@@ -4,10 +4,10 @@ import { css } from '@patternfly/react-styles';
 import { LogViewerRow } from './LogViewerRow';
 import { parseConsoleOutput, searchedKeyWordType, stripAnsi } from './utils/utils';
 import { VariableSizeList as List, areEqual } from '../react-window';
-import styles from '@patternfly/react-styles/css/components/LogViewer/log-viewer';
+import styles from './css/log-viewer';
 import AnsiUp from '../ansi_up/ansi_up';
 
-interface LogViewerProps {
+export interface LogViewerProps {
   /** String or String Array data being sent by the consumer*/
   data?: string | string[];
   /** Consumer may turn off the visibility on the toolbar */
@@ -216,7 +216,7 @@ const LogViewerBase: React.FunctionComponent<LogViewerProps> = memo(
       setIndexWidth(parseFloat(dummyIndexStyles.width));
       // remove dummy elements from the DOM tree
       containerRef.current.removeChild(dummyList);
-      setListKey(listKey => listKey + 1);
+      setListKey((listKey) => listKey + 1);
     };
 
     const scrollToRowInFocus = (searchedRowIndex: searchedKeyWordType) => {
@@ -226,14 +226,14 @@ const LogViewerBase: React.FunctionComponent<LogViewerProps> = memo(
       // if the keyword is out of the window when wrapping text
       if (!isTextWrapped) {
         setTimeout(() => {
-          const element = containerRef.current.querySelector('.pf-v5-c-log-viewer__string.pf-m-current');
+          const element = containerRef.current.querySelector('.pf-v6-c-log-viewer__string.pf-m-current');
           element && element.scrollIntoView({ block: 'nearest', inline: 'center' });
         }, 1);
       }
     };
 
     useEffect(() => {
-      setListKey(listKey => listKey + 1);
+      setListKey((listKey) => listKey + 1);
     }, [isTextWrapped]);
 
     const computeRowHeight = (rowText: string, estimatedHeight: number) => {
@@ -312,11 +312,11 @@ const LogViewerBase: React.FunctionComponent<LogViewerProps> = memo(
             hasLineNumbers && styles.modifiers.lineNumbers,
             !isTextWrapped && styles.modifiers.nowrap,
             initialIndexWidth && styles.modifiers.lineNumberChars,
-            theme === 'dark' && styles.modifiers.dark
+            theme === 'dark' && styles.themeDark
           )}
           {...(initialIndexWidth && {
             style: {
-              '--pf-v5-c-log-viewer--line-number-chars': initialIndexWidth + 1
+              '--pf-v6-c-log-viewer--line-number-chars': initialIndexWidth + 1
             } as React.CSSProperties
           })}
           {...props}
