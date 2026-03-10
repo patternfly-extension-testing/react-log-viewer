@@ -84,6 +84,11 @@ const pageData = {
           "description": "Content displayed while the log viewer is loading"
         },
         {
+          "name": "numSpaces",
+          "type": "number",
+          "description": "Number of spaces used to replace tabs"
+        },
+        {
           "name": "onScroll",
           "type": "({\n  scrollDirection,\n  scrollOffset,\n  scrollOffsetToBottom,\n  scrollUpdateWasRequested\n}: {\n  scrollDirection: 'forward' | 'backward';\n  scrollOffset: number;\n  scrollOffsetToBottom: number;\n  scrollUpdateWasRequested: boolean;\n}) => void",
           "description": "Callback function when scrolling the window.\nscrollDirection is the direction of scroll, could be 'forward'|'backward'.\nscrollOffset and scrollOffsetToBottom are the offset of the current position to the top or the bottom.\nscrollUpdateWasRequested is false when the scroll event is cause by the user interaction in the browser, else it's true.\n@example onScroll={({scrollDirection, scrollOffset, scrollOffsetToBottom, scrollUpdateWasRequested})=>{}}"
